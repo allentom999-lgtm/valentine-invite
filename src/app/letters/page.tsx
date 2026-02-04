@@ -69,10 +69,10 @@ export default function LettersPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-16"
                 >
-                    <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-rose-600 mb-4">
+                    <h1 className="text-4xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-rose-600 mb-4">
                         Valentine's Week 💕
                     </h1>
-                    <p className="text-xl md:text-2xl text-rose-600 font-medium">
+                    <p className="text-lg md:text-2xl text-rose-600 font-medium">
                         A letter for each special day...
                     </p>
                 </motion.div>
@@ -103,26 +103,26 @@ export default function LettersPage() {
                                     <Link href={unlocked ? `/letter/${day.date}` : "#"} className="block">
                                         <motion.div
                                             whileHover={unlocked ? { scale: 1.05, rotate: 2 } : {}}
-                                            className={`relative bg-gradient-to-br ${day.color} p-8 rounded-3xl shadow-2xl min-h-[280px] flex flex-col items-center justify-center ${!unlocked && 'opacity-50 grayscale'
+                                            className={`relative bg-gradient-to-br ${day.color} p-6 md:p-12 rounded-3xl shadow-2xl min-h-[300px] md:min-h-[400px] flex flex-col items-center justify-center ${!unlocked && 'opacity-50 grayscale'
                                                 }`}
                                         >
                                             {/* Lock Icon */}
                                             {!unlocked && (
-                                                <div className="absolute top-4 right-4 text-4xl">
+                                                <div className="absolute top-4 right-4 text-3xl md:text-5xl">
                                                     🔒
                                                 </div>
                                             )}
 
                                             {/* Envelope Icon */}
-                                            <div className="text-7xl mb-4">
+                                            <div className="text-7xl md:text-9xl mb-4 md:mb-6">
                                                 {unlocked ? '💌' : '✉️'}
                                             </div>
 
                                             {/* Day Info */}
-                                            <h3 className="text-2xl font-bold text-white text-center mb-2">
+                                            <h3 className="text-3xl md:text-5xl font-bold text-white text-center mb-2 md:mb-4">
                                                 {day.name}
                                             </h3>
-                                            <p className="text-xl">
+                                            <p className="text-2xl md:text-4xl">
                                                 {day.emoji}
                                             </p>
 
@@ -130,7 +130,7 @@ export default function LettersPage() {
                                                 <motion.p
                                                     initial={{ opacity: 0 }}
                                                     animate={{ opacity: 1 }}
-                                                    className="mt-4 text-white/90 font-medium"
+                                                    className="mt-4 md:mt-6 text-white/90 font-medium text-lg md:text-xl"
                                                 >
                                                     Click to open
                                                 </motion.p>

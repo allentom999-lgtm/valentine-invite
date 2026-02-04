@@ -153,7 +153,7 @@ export default function ScrollyCanvas() {
                 <Overlay scrollYProgress={scrollYProgress} />
                 {!isLoaded && (
                     <div className="absolute inset-0 flex items-center justify-center text-white z-20">
-                        Loading Experience...
+                        <p className="text-xl md:text-2xl font-medium animate-pulse">Loading experience...</p>
                     </div>
                 )}
             </div>

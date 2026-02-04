@@ -21,9 +21,10 @@ export default function ValentineQuestion() {
             return;
         }
 
-        // Generate random position within safe bounds
-        const maxX = 200;
-        const maxY = 100;
+        // Generate random position within safe bounds - responsive
+        const isMobile = window.innerWidth < 768;
+        const maxX = isMobile ? window.innerWidth * 0.4 : 200;
+        const maxY = isMobile ? window.innerHeight * 0.2 : 100;
         const randomX = (Math.random() - 0.5) * maxX;
         const randomY = (Math.random() - 0.5) * maxY;
 
@@ -84,13 +85,13 @@ export default function ValentineQuestion() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-tight"
+                    className="text-4xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-tight px-4"
                 >
                     Will you be my valentine?
                 </motion.h1>
 
                 {/* Buttons Container */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mt-16">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mt-12 md:mt-16">
                     {/* YES Button with enhanced breathing animation */}
                     <motion.button
                         onClick={handleYesClick}
@@ -109,7 +110,7 @@ export default function ValentineQuestion() {
                         }}
                         whileHover={{ scale: 1.12 }}
                         whileTap={{ scale: 0.95 }}
-                        className="relative px-16 py-6 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-2xl md:text-3xl font-bold rounded-full shadow-2xl transition-all duration-300 overflow-hidden"
+                        className="relative px-12 md:px-16 py-4 md:py-6 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xl md:text-3xl font-bold rounded-full shadow-2xl transition-all duration-300 overflow-hidden"
                     >
                         {/* Animated shine effect */}
                         <motion.div
