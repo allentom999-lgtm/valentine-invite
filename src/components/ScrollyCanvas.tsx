@@ -10,7 +10,7 @@ export default function ScrollyCanvas() {
     const [images, setImages] = useState<HTMLImageElement[]>([]);
     const [isLoaded, setIsLoaded] = useState(false);
 
-    const frameCount = 40;
+    const frameCount = 192;
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
