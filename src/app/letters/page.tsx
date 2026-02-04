@@ -78,7 +78,7 @@ export default function LettersPage() {
                 </motion.div>
 
                 {/* Envelopes Grid */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {valentineDays.slice(0, 7).map((day, index) => {
                         const unlocked = isUnlocked(day.date);
                         const timeRemaining = getTimeRemaining(day.date);
@@ -93,8 +93,8 @@ export default function LettersPage() {
                             >
                                 <div className={`relative group ${unlocked ? 'cursor-pointer' : 'cursor-not-allowed'}`}>
                                     {/* Timer */}
-                                    <div className="absolute -top-6 md:-top-8 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-2 md:px-4 py-1 md:py-2 rounded-full shadow-lg z-10 w-max">
-                                        <p className={`text-[10px] md:text-sm font-mono font-bold ${unlocked ? 'text-green-600' : 'text-rose-600'}`}>
+                                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg z-10">
+                                        <p className={`text-sm font-mono font-bold ${unlocked ? 'text-green-600' : 'text-rose-600'}`}>
                                             {timeRemaining}
                                         </p>
                                     </div>
@@ -103,26 +103,26 @@ export default function LettersPage() {
                                     <Link href={unlocked ? `/letter/${day.date}` : "#"} className="block">
                                         <motion.div
                                             whileHover={unlocked ? { scale: 1.05, rotate: 2 } : {}}
-                                            className={`relative bg-gradient-to-br ${day.color} p-4 md:p-8 rounded-2xl md:rounded-3xl shadow-2xl min-h-[160px] md:min-h-[280px] flex flex-col items-center justify-center ${!unlocked && 'opacity-50 grayscale'
+                                            className={`relative bg-gradient-to-br ${day.color} p-8 rounded-3xl shadow-2xl min-h-[280px] flex flex-col items-center justify-center ${!unlocked && 'opacity-50 grayscale'
                                                 }`}
                                         >
                                             {/* Lock Icon */}
                                             {!unlocked && (
-                                                <div className="absolute top-2 right-2 md:top-4 md:right-4 text-2xl md:text-4xl text-white/50">
+                                                <div className="absolute top-4 right-4 text-4xl">
                                                     🔒
                                                 </div>
                                             )}
 
                                             {/* Envelope Icon */}
-                                            <div className="text-4xl md:text-7xl mb-2 md:mb-4">
+                                            <div className="text-7xl mb-4">
                                                 {unlocked ? '💌' : '✉️'}
                                             </div>
 
                                             {/* Day Info */}
-                                            <h3 className="text-sm md:text-2xl font-bold text-white text-center mb-1">
+                                            <h3 className="text-2xl font-bold text-white text-center mb-2">
                                                 {day.name}
                                             </h3>
-                                            <p className="text-lg md:text-xl">
+                                            <p className="text-xl">
                                                 {day.emoji}
                                             </p>
 
@@ -130,9 +130,9 @@ export default function LettersPage() {
                                                 <motion.p
                                                     initial={{ opacity: 0 }}
                                                     animate={{ opacity: 1 }}
-                                                    className="mt-2 md:mt-4 text-white/90 font-medium text-[10px] md:text-base"
+                                                    className="mt-4 text-white/90 font-medium"
                                                 >
-                                                    Tap to open
+                                                    Click to open
                                                 </motion.p>
                                             )}
                                         </motion.div>
@@ -154,7 +154,7 @@ export default function LettersPage() {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.7 }}
-                            className="mt-12 flex justify-center px-2"
+                            className="mt-12 flex justify-center"
                         >
                             <div className={`relative group ${unlocked ? 'cursor-pointer' : 'cursor-not-allowed'} max-w-2xl w-full`}>
                                 {/* Timer */}
@@ -168,26 +168,26 @@ export default function LettersPage() {
                                 <Link href={unlocked ? `/letter/${day.date}` : "#"} className="block">
                                     <motion.div
                                         whileHover={unlocked ? { scale: 1.05, rotate: 2 } : {}}
-                                        className={`relative bg-gradient-to-br ${day.color} p-8 md:p-12 rounded-3xl shadow-2xl min-h-[300px] md:min-h-[400px] flex flex-col items-center justify-center ${!unlocked && 'opacity-50 grayscale'
+                                        className={`relative bg-gradient-to-br ${day.color} p-12 rounded-3xl shadow-2xl min-h-[400px] flex flex-col items-center justify-center ${!unlocked && 'opacity-50 grayscale'
                                             }`}
                                     >
                                         {/* Lock Icon */}
                                         {!unlocked && (
-                                            <div className="absolute top-4 right-4 text-4xl md:text-5xl text-white/50">
+                                            <div className="absolute top-4 right-4 text-5xl">
                                                 🔒
                                             </div>
                                         )}
 
                                         {/* Envelope Icon */}
-                                        <div className="text-7xl md:text-9xl mb-4 md:mb-6">
+                                        <div className="text-9xl mb-6">
                                             {unlocked ? '💌' : '✉️'}
                                         </div>
 
                                         {/* Day Info */}
-                                        <h3 className="text-3xl md:text-5xl font-bold text-white text-center mb-2 md:mb-4">
+                                        <h3 className="text-5xl font-bold text-white text-center mb-4">
                                             {day.name}
                                         </h3>
-                                        <p className="text-3xl md:text-4xl">
+                                        <p className="text-4xl">
                                             {day.emoji}
                                         </p>
 
@@ -195,9 +195,9 @@ export default function LettersPage() {
                                             <motion.p
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
-                                                className="mt-4 md:mt-6 text-white/90 font-medium text-lg md:text-xl"
+                                                className="mt-6 text-white/90 font-medium text-xl"
                                             >
-                                                Tap to open
+                                                Click to open
                                             </motion.p>
                                         )}
                                     </motion.div>

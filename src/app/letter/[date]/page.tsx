@@ -88,12 +88,12 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     initial={{ y: -20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="text-center mb-6 md:mb-8"
+                    className="text-center mb-8"
                 >
-                    <div className={`${isValentineDay ? 'text-7xl md:text-9xl' : 'text-5xl md:text-7xl'} mb-4`}>
+                    <div className={`${isValentineDay ? 'text-9xl' : 'text-7xl'} mb-4`}>
                         {letter.emoji}
                     </div>
-                    <h1 className={`${isValentineDay ? 'text-4xl md:text-6xl' : 'text-3xl md:text-4xl'} font-bold text-transparent bg-clip-text bg-gradient-to-r ${letter.color} mb-2 md:mb-4 px-2`}>
+                    <h1 className={`${isValentineDay ? 'text-6xl' : 'text-4xl'} font-bold text-transparent bg-clip-text bg-gradient-to-r ${letter.color} mb-4`}>
                         {letter.title}
                     </h1>
                 </motion.div>
@@ -103,9 +103,9 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.6 }}
-                    className="space-y-4 md:space-y-6"
+                    className="space-y-6"
                 >
-                    <div className={`${isValentineDay ? 'text-lg md:text-2xl' : 'text-base md:text-xl'} text-gray-700 leading-relaxed text-center font-serif italic px-2 md:px-0`}>
+                    <div className={`${isValentineDay ? 'text-2xl' : 'text-xl'} text-gray-700 leading-relaxed text-center font-serif italic`}>
                         "{letter.message}"
                     </div>
 
@@ -114,7 +114,7 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ delay: 1, type: "spring" }}
-                            className="text-center text-4xl md:text-6xl mt-6 md:mt-8"
+                            className="text-center text-6xl mt-8"
                         >
                             💕💖💗💝❤️
                         </motion.div>
@@ -126,12 +126,12 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.9 }}
-                    className="mt-8 md:mt-12 text-right"
+                    className="mt-12 text-right"
                 >
-                    <p className={`${isValentineDay ? 'text-xl md:text-3xl' : 'text-lg md:text-2xl'} font-script text-rose-600`}>
+                    <p className={`${isValentineDay ? 'text-3xl' : 'text-2xl'} font-script text-rose-600`}>
                         With all my love,
                     </p>
-                    <p className={`${isValentineDay ? 'text-2xl md:text-4xl' : 'text-xl md:text-3xl'} font-script text-rose-700 mt-1 md:mt-2`}>
+                    <p className={`${isValentineDay ? 'text-4xl' : 'text-3xl'} font-script text-rose-700 mt-2`}>
                         Your Valentine 💕
                     </p>
                 </motion.div>
@@ -141,7 +141,7 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.2 }}
-                    className="text-center mt-8 md:mt-12"
+                    className="text-center mt-12"
                 >
                     <Link
                         href="/letters"

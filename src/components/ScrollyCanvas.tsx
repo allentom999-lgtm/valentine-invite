@@ -32,7 +32,7 @@ export default function ScrollyCanvas() {
             for (let i = 0; i < frameCount; i++) {
                 const promise = new Promise<void>((resolve) => {
                     const img = new Image();
-                    img.src = `/sequence/frame_${i}.png`;
+                    img.src = `/sequence/frame_${i + 1}.png`;
                     img.onload = () => {
                         loadedImages[i] = img;
                         resolve();

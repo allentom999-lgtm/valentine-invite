@@ -28,7 +28,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center"
             >
                 <div className="text-center">
-                    <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tighter text-white animate-pulse px-4">
+                    <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white animate-pulse">
                         Scroll me
                     </h1>
                     <motion.div
