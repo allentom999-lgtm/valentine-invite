@@ -9,6 +9,7 @@ export default function ScrollyCanvas() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [images, setImages] = useState<HTMLImageElement[]>([]);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [loadingProgress, setLoadingProgress] = useState(0);
 
     const frameCount = 40;
 
@@ -28,6 +29,7 @@ export default function ScrollyCanvas() {
         const loadImages = async () => {
             const loadedImages: HTMLImageElement[] = [];
             const promises: Promise<void>[] = [];
+            let loadedCount = 0;
 
             for (let i = 0; i < frameCount; i++) {
                 const promise = new Promise<void>((resolve) => {
@@ -35,10 +37,14 @@ export default function ScrollyCanvas() {
                     img.src = `/sequence/frame_${i + 1}.png`;
                     img.onload = () => {
                         loadedImages[i] = img;
+                        loadedCount++;
+                        setLoadingProgress(Math.round((loadedCount / frameCount) * 100));
                         resolve();
                     };
                     img.onerror = (e) => {
                         console.error(`Failed to load frame ${i}`, e);
+                        loadedCount++;
+                        setLoadingProgress(Math.round((loadedCount / frameCount) * 100));
                         resolve();
                     };
                 });
@@ -152,8 +158,22 @@ export default function ScrollyCanvas() {
                 />
                 <Overlay scrollYProgress={scrollYProgress} />
                 {!isLoaded && (
-                    <div className="absolute inset-0 flex items-center justify-center text-white z-20">
-                        Loading Experience...
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#050505] z-50">
+                        <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden relative">
+                            <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: `${loadingProgress}%` }}
+                                className="absolute inset-y-0 left-0 bg-gradient-to-r from-pink-500 to-rose-500 shadow-[0_0_15px_rgba(236,72,153,0.5)]"
+                                transition={{ type: "spring", bounce: 0, duration: 0.5 }}
+                            />
+                        </div>
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="mt-4 text-white/40 text-sm font-medium tracking-widest uppercase"
+                        >
+                            Loading {loadingProgress}%
+                        </motion.p>
                     </div>
                 )}
             </div>
