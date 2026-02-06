@@ -9,7 +9,7 @@ const letterContent: Record<string, { title: string; emoji: string; message: str
         title: "Rose Day",
         emoji: "🌹",
         color: "from-red-400 to-pink-500",
-        message: "Like a rose, you bring beauty and joy to my life every single day. Your smile is the most precious thing to me. 🌹💕"
+        message: "My Love,\n\nOn this Rose Day, I wish I could hand you a rose in person and watch that beautiful smile bloom on your face. But until I can, let this letter be my rose carrying all my love to you.\n\nLike a rose, you’ve brought color, warmth, and fragrance into my life. Even on my toughest days, just thinking of you calms me down. You are my comfort, my motivation, and the most beautiful part of my journey.\n\nEvery dream I chase feels more meaningful because I see you walking beside me in the future. I promise to keep growing, improving, and becoming someone who deserves your love every single day.\n\nSoon that day will come where my baby wakes up and surprise you with flowers on rose.. that day will come soon my cheesecake!\n\nIf I could, I would fill your world with roses in every shade you love soft pink, gentle lavender, and all the colors that match your beautiful heart. But more than flowers, I want to give you laughter, support, and a lifetime of little happy moments together.\n\nHappy Rose Day, my love. Thank you for being my reason to smile.\n\nForever yours,\nAllen"
     },
     "2026-02-08": {
         title: "Propose Day",

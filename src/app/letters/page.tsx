@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface ValentineDay {
     date: string;
@@ -26,16 +27,37 @@ const valentineDays: ValentineDay[] = [
 export default function LettersPage() {
     const [currentTime, setCurrentTime] = useState(new Date());
     const [mounted, setMounted] = useState(false);
+    const [showQuestion, setShowQuestion] = useState(false);
+    const [answer, setAnswer] = useState("");
+    const [error, setError] = useState(false);
+    const [isRoseDaySolved, setIsRoseDaySolved] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         setMounted(true);
+        const solved = localStorage.getItem("rose_day_solved") === "true";
+        setIsRoseDaySolved(solved);
         const timer = setInterval(() => {
             setCurrentTime(new Date());
         }, 1000);
         return () => clearInterval(timer);
     }, []);
 
+    const handleAnswerSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (answer.trim() === "15/02/2025") {
+            setIsRoseDaySolved(true);
+            localStorage.setItem("rose_day_solved", "true");
+            setShowQuestion(false);
+            setError(false);
+        } else {
+            setError(true);
+            setTimeout(() => setError(false), 2000);
+        }
+    };
+
     const isUnlocked = (targetDate: string) => {
+        if (targetDate === "2026-02-07") return true;
         const target = new Date(targetDate);
         target.setHours(6, 0, 0, 0);
         return currentTime >= target;
@@ -98,43 +120,55 @@ export default function LettersPage() {
                                     </div>
 
                                     {/* Envelope */}
-                                    <Link href={unlocked ? `/letter/${day.date}` : "#"} className="block">
-                                        <motion.div
-                                            whileHover={unlocked ? { scale: 1.05, rotate: 2 } : {}}
-                                            className={`relative bg-gradient-to-br ${day.color} p-8 rounded-3xl shadow-2xl min-h-[280px] flex flex-col items-center justify-center ${!unlocked && 'opacity-50 grayscale'
-                                                }`}
-                                        >
-                                            {/* Lock Icon */}
-                                            {!unlocked && (
-                                                <div className="absolute top-4 right-4 text-4xl">
-                                                    🔒
+                                    <div
+                                        onClick={(e) => {
+                                            if (!unlocked) return;
+                                            if (day.name === "Rose Day" && !isRoseDaySolved) {
+                                                e.preventDefault();
+                                                setShowQuestion(true);
+                                                return;
+                                            }
+                                        }}
+                                        className="block"
+                                    >
+                                        <Link href={(unlocked && (day.name !== "Rose Day" || isRoseDaySolved)) ? `/letter/${day.date}` : "#"}>
+                                            <motion.div
+                                                whileHover={unlocked ? { scale: 1.05, rotate: 2 } : {}}
+                                                className={`relative bg-gradient-to-br ${day.color} p-8 rounded-3xl shadow-2xl min-h-[280px] flex flex-col items-center justify-center ${!unlocked && 'opacity-50 grayscale'
+                                                    }`}
+                                            >
+                                                {/* Lock Icon */}
+                                                {!unlocked && (
+                                                    <div className="absolute top-4 right-4 text-4xl">
+                                                        🔒
+                                                    </div>
+                                                )}
+
+                                                {/* Envelope Icon */}
+                                                <div className="text-7xl mb-4">
+                                                    {unlocked ? '💌' : '✉️'}
                                                 </div>
-                                            )}
 
-                                            {/* Envelope Icon */}
-                                            <div className="text-7xl mb-4">
-                                                {unlocked ? '💌' : '✉️'}
-                                            </div>
+                                                {/* Day Info */}
+                                                <h3 className="text-2xl font-bold text-white text-center mb-2">
+                                                    {day.name}
+                                                </h3>
+                                                <p className="text-xl">
+                                                    {day.emoji}
+                                                </p>
 
-                                            {/* Day Info */}
-                                            <h3 className="text-2xl font-bold text-white text-center mb-2">
-                                                {day.name}
-                                            </h3>
-                                            <p className="text-xl">
-                                                {day.emoji}
-                                            </p>
-
-                                            {unlocked && (
-                                                <motion.p
-                                                    initial={{ opacity: 0 }}
-                                                    animate={{ opacity: 1 }}
-                                                    className="mt-4 text-white/90 font-medium"
-                                                >
-                                                    Click to open
-                                                </motion.p>
-                                            )}
-                                        </motion.div>
-                                    </Link>
+                                                {unlocked && (
+                                                    <motion.p
+                                                        initial={{ opacity: 0 }}
+                                                        animate={{ opacity: 1 }}
+                                                        className="mt-4 text-white/90 font-medium"
+                                                    >
+                                                        Click to open
+                                                    </motion.p>
+                                                )}
+                                            </motion.div>
+                                        </Link>
+                                    </div>
                                 </div>
                             </motion.div>
                         );
@@ -257,6 +291,74 @@ export default function LettersPage() {
                     ))}
                 </div>
             )}
+
+            {/* Question Modal */}
+            <AnimatePresence>
+                {showQuestion && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50 px-4"
+                        onClick={() => setShowQuestion(false)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl max-w-md w-full relative"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button
+                                onClick={() => setShowQuestion(false)}
+                                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+                            >
+                                ✕
+                            </button>
+
+                            <div className="text-center space-y-6">
+                                <div className="text-6xl">🌹</div>
+                                <h2 className="text-3xl font-bold text-rose-600">Rose Day Challenge</h2>
+                                <p className="text-gray-600 text-lg">To unlock this letter, answer this question:</p>
+
+                                <div className="bg-rose-50 p-6 rounded-2xl border-2 border-rose-100">
+                                    <p className="text-xl font-medium text-rose-800 italic">"When is our first date?"</p>
+                                    <p className="text-sm text-rose-400 mt-2">Format: DD/MM/YYYY</p>
+                                </div>
+
+                                <form onSubmit={handleAnswerSubmit} className="space-y-4">
+                                    <input
+                                        autoFocus
+                                        type="text"
+                                        value={answer}
+                                        onChange={(e) => setAnswer(e.target.value)}
+                                        placeholder="Enter name here..."
+                                        className={`w-full px-6 py-4 rounded-xl border-2 focus:outline-none transition-all text-center text-xl ${error
+                                            ? 'border-red-400 bg-red-50 animate-shake'
+                                            : 'border-rose-100 focus:border-rose-400 bg-white'
+                                            }`}
+                                    />
+                                    {error && (
+                                        <motion.p
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            className="text-red-500 font-medium"
+                                        >
+                                            Incorrect answer, try again! 💕
+                                        </motion.p>
+                                    )}
+                                    <button
+                                        type="submit"
+                                        className="w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xl font-bold rounded-xl hover:from-pink-600 hover:to-rose-600 transition-all shadow-lg hover:scale-[1.02]"
+                                    >
+                                        Unlock Letter ✨
+                                    </button>
+                                </form>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }
