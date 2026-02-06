@@ -37,15 +37,13 @@ export default function LettersPage() {
 
     const isUnlocked = (targetDate: string) => {
         const target = new Date(targetDate);
-        target.setHours(0, 0, 0, 0);
-        const now = new Date(currentTime);
-        now.setHours(0, 0, 0, 0);
-        return now >= target;
+        target.setHours(6, 0, 0, 0);
+        return currentTime >= target;
     };
 
     const getTimeRemaining = (targetDate: string) => {
         const target = new Date(targetDate);
-        target.setHours(0, 0, 0, 0);
+        target.setHours(6, 0, 0, 0);
         const diff = target.getTime() - currentTime.getTime();
 
         if (diff <= 0) return "Unlocked! 🎉";
@@ -220,6 +218,14 @@ export default function LettersPage() {
                     >
                         ← Back to Celebration
                     </Link>
+                    <div className="mt-4">
+                        <Link
+                            href="/"
+                            className="inline-block px-8 py-4 border-2 border-rose-500 text-rose-600 text-lg font-semibold rounded-full hover:bg-rose-50 transition-all shadow-md hover:scale-105"
+                        >
+                            🏠 Return to Main Page
+                        </Link>
+                    </div>
                 </motion.div>
             </div>
 

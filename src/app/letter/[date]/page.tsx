@@ -149,6 +149,14 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     >
                         ← Back to All Letters
                     </Link>
+                    <div className="mt-4">
+                        <Link
+                            href="/"
+                            className="inline-block px-8 py-4 border-2 border-rose-500 text-rose-600 text-lg font-semibold rounded-full hover:bg-rose-50 transition-all shadow-md hover:scale-105"
+                        >
+                            🏠 Return to Main Page
+                        </Link>
+                    </div>
                 </motion.div>
             </motion.div>
 
