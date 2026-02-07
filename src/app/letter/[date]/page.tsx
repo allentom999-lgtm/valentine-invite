@@ -15,7 +15,7 @@ const letterContent: Record<string, { title: string; emoji: string; message: str
         title: "Propose Day",
         emoji: "💍",
         color: "from-purple-400 to-pink-400",
-        message: "Every moment with you feels like a dream. You make my heart skip a beat, and I'm so grateful you said yes! 💍✨"
+        message: "My Love,\n\nFrom the day you walked into my life, everything started feeling brighter, calmer, and more meaningful. You became the person I want to share my victories with, the one I want beside me when things get tough, and the smile I look forward to at the end of every day.\n\nOn this Propose Day, I just want to tell you what my heart has known for a long time—life feels right with you in it. You inspire me to become better, dream bigger, and work harder for the future we both deserve.\n\nI don’t promise a perfect life, but I promise to stand with you through every imperfect moment. To support you, laugh with you, grow with you, and love you a little more every day.\n\nSo today, with all my heart, I want to ask you—will you continue this beautiful journey with me and let me be the one who loves and stands by you always?"
     },
     "2026-02-09": {
         title: "Chocolate Day",

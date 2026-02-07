@@ -30,13 +30,11 @@ export default function LettersPage() {
     const [showQuestion, setShowQuestion] = useState(false);
     const [answer, setAnswer] = useState("");
     const [error, setError] = useState(false);
-    const [isRoseDaySolved, setIsRoseDaySolved] = useState(false);
+    const [challengeDay, setChallengeDay] = useState<string | null>(null);
     const router = useRouter();
 
     useEffect(() => {
         setMounted(true);
-        const solved = localStorage.getItem("rose_day_solved") === "true";
-        setIsRoseDaySolved(solved);
         const timer = setInterval(() => {
             setCurrentTime(new Date());
         }, 1000);
@@ -45,11 +43,23 @@ export default function LettersPage() {
 
     const handleAnswerSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (answer.trim() === "15/02/2025") {
-            setIsRoseDaySolved(true);
-            localStorage.setItem("rose_day_solved", "true");
+        const normalizedAnswer = answer.trim().toLowerCase();
+
+        let isCorrect = false;
+        if (challengeDay === "Rose Day" && answer.trim() === "15/02/2025") {
+            isCorrect = true;
+        } else if (challengeDay === "Propose Day" && normalizedAnswer === "mango") {
+            isCorrect = true;
+        }
+
+        if (isCorrect) {
             setShowQuestion(false);
             setError(false);
+            setAnswer("");
+            const targetDay = valentineDays.find(d => d.name === challengeDay);
+            if (targetDay) {
+                router.push(`/letter/${targetDay.date}`);
+            }
         } else {
             setError(true);
             setTimeout(() => setError(false), 2000);
@@ -57,7 +67,6 @@ export default function LettersPage() {
     };
 
     const isUnlocked = (targetDate: string) => {
-        if (targetDate === "2026-02-07") return true;
         const target = new Date(targetDate);
         target.setHours(6, 0, 0, 0);
         return currentTime >= target;
@@ -123,15 +132,16 @@ export default function LettersPage() {
                                     <div
                                         onClick={(e) => {
                                             if (!unlocked) return;
-                                            if (day.name === "Rose Day" && !isRoseDaySolved) {
+                                            if (day.name === "Rose Day" || day.name === "Propose Day") {
                                                 e.preventDefault();
+                                                setChallengeDay(day.name);
                                                 setShowQuestion(true);
                                                 return;
                                             }
                                         }}
                                         className="block"
                                     >
-                                        <Link href={(unlocked && (day.name !== "Rose Day" || isRoseDaySolved)) ? `/letter/${day.date}` : "#"}>
+                                        <Link href={(unlocked && day.name !== "Rose Day" && day.name !== "Propose Day") ? `/letter/${day.date}` : "#"}>
                                             <motion.div
                                                 whileHover={unlocked ? { scale: 1.05, rotate: 2 } : {}}
                                                 className={`relative bg-gradient-to-br ${day.color} p-8 rounded-3xl shadow-2xl min-h-[280px] flex flex-col items-center justify-center ${!unlocked && 'opacity-50 grayscale'
@@ -317,13 +327,19 @@ export default function LettersPage() {
                             </button>
 
                             <div className="text-center space-y-6">
-                                <div className="text-6xl">🌹</div>
-                                <h2 className="text-3xl font-bold text-rose-600">Rose Day Challenge</h2>
+                                <div className="text-6xl">{challengeDay === "Rose Day" ? "🌹" : "💍"}</div>
+                                <h2 className="text-3xl font-bold text-rose-600">{challengeDay} Challenge</h2>
                                 <p className="text-gray-600 text-lg">To unlock this letter, answer this question:</p>
 
                                 <div className="bg-rose-50 p-6 rounded-2xl border-2 border-rose-100">
-                                    <p className="text-xl font-medium text-rose-800 italic">"When is our first date?"</p>
-                                    <p className="text-sm text-rose-400 mt-2">Format: DD/MM/YYYY</p>
+                                    <p className="text-xl font-medium text-rose-800 italic">
+                                        {challengeDay === "Rose Day"
+                                            ? "\"When is our first date?\""
+                                            : "Ammu's favourite fruit?"}
+                                    </p>
+                                    {challengeDay === "Rose Day" && (
+                                        <p className="text-sm text-rose-400 mt-2">Format: DD/MM/YYYY</p>
+                                    )}
                                 </div>
 
                                 <form onSubmit={handleAnswerSubmit} className="space-y-4">
