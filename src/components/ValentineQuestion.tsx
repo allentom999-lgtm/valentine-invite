@@ -38,44 +38,42 @@ export default function ValentineQuestion() {
     };
 
     return (
-        <section className="relative w-full min-h-screen bg-[#050505] flex flex-col items-center justify-center px-4 py-24 overflow-hidden">
+        <section className="relative w-full min-h-screen bg-[#0a060e] flex flex-col items-center justify-center px-4 py-24 overflow-hidden">
             {/* Animated breathing background - Magenta/Rose focus */}
             <motion.div
                 animate={{
                     background: [
-                        'radial-gradient(circle at 20% 50%, rgba(219, 39, 119, 0.2) 0%, rgba(190, 24, 93, 0.1) 30%, transparent 60%)',
-                        'radial-gradient(circle at 80% 50%, rgba(190, 24, 93, 0.2) 0%, rgba(157, 23, 77, 0.1) 30%, transparent 60%)',
-                        'radial-gradient(circle at 50% 20%, rgba(157, 23, 77, 0.2) 0%, rgba(219, 39, 119, 0.1) 30%, transparent 60%)',
-                        'radial-gradient(circle at 50% 80%, rgba(219, 39, 119, 0.2) 0%, rgba(190, 24, 93, 0.1) 30%, transparent 60%)',
-                        'radial-gradient(circle at 20% 50%, rgba(219, 39, 119, 0.2) 0%, rgba(190, 24, 93, 0.1) 30%, transparent 60%)',
+                        'radial-gradient(circle at 80% 50%, rgba(219, 39, 119, 0.4) 0%, rgba(162, 28, 175, 0.2) 35%, transparent 70%)',
+                        'radial-gradient(circle at 90% 40%, rgba(162, 28, 175, 0.4) 0%, rgba(219, 39, 119, 0.2) 35%, transparent 70%)',
+                        'radial-gradient(circle at 70% 60%, rgba(219, 39, 119, 0.4) 0%, rgba(162, 28, 175, 0.2) 35%, transparent 70%)',
+                        'radial-gradient(circle at 80% 50%, rgba(219, 39, 119, 0.4) 0%, rgba(162, 28, 175, 0.2) 35%, transparent 70%)',
                     ],
                 }}
                 transition={{
-                    duration: 10,
+                    duration: 8,
                     repeat: Infinity,
                     ease: "easeInOut"
                 }}
-                className="absolute inset-0 opacity-80"
+                className="absolute inset-0 opacity-100"
             />
 
             {/* Secondary breathing layer - Cyan/Teal accent from the photos */}
             <motion.div
                 animate={{
                     background: [
-                        'radial-gradient(circle at 75% 25%, rgba(8, 145, 178, 0.15) 0%, transparent 45%)',
-                        'radial-gradient(circle at 25% 75%, rgba(8, 145, 178, 0.1) 0%, transparent 45%)',
-                        'radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.15) 0%, transparent 45%)',
-                        'radial-gradient(circle at 25% 25%, rgba(6, 182, 212, 0.1) 0%, transparent 45%)',
-                        'radial-gradient(circle at 75% 25%, rgba(8, 145, 178, 0.15) 0%, transparent 45%)',
+                        'radial-gradient(circle at 20% 40%, rgba(6, 182, 212, 0.35) 0%, transparent 60%)',
+                        'radial-gradient(circle at 10% 30%, rgba(8, 145, 178, 0.3) 0%, transparent 60%)',
+                        'radial-gradient(circle at 30% 50%, rgba(6, 182, 212, 0.35) 0%, transparent 60%)',
+                        'radial-gradient(circle at 20% 40%, rgba(6, 182, 212, 0.35) 0%, transparent 60%)',
                     ],
                 }}
                 transition={{
-                    duration: 12,
+                    duration: 10,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    delay: 2
+                    delay: 1
                 }}
-                className="absolute inset-0 opacity-50"
+                className="absolute inset-0 opacity-80"
             />
 
             <div className="max-w-4xl mx-auto text-center space-y-16 relative z-10">
@@ -95,11 +93,11 @@ export default function ValentineQuestion() {
                     <motion.button
                         onClick={handleYesClick}
                         animate={{
-                            scale: [1, 1.1, 1],
+                            scale: [1, 1.15, 1],
                             boxShadow: [
-                                '0 0 20px rgba(219, 39, 119, 0.4)',
-                                '0 0 50px rgba(219, 39, 119, 0.7), 0 0 80px rgba(13, 148, 136, 0.3)',
-                                '0 0 20px rgba(219, 39, 119, 0.4)',
+                                '0 0 20px rgba(219, 39, 119, 0.4), 0 0 0px rgba(6, 182, 212, 0)',
+                                '0 0 60px rgba(219, 39, 119, 0.8), 0 0 100px rgba(6, 182, 212, 0.4)',
+                                '0 0 20px rgba(219, 39, 119, 0.4), 0 0 0px rgba(6, 182, 212, 0)',
                             ],
                         }}
                         transition={{

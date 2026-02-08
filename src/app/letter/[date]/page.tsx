@@ -1,7 +1,7 @@
 "use client";
 
-import { use } from "react";
-import { motion } from "framer-motion";
+import { use, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 const letterContent: Record<string, { title: string; emoji: string; message: string; color: string }> = {
@@ -57,6 +57,7 @@ const letterContent: Record<string, { title: string; emoji: string; message: str
 
 export default function LetterPage({ params }: { params: Promise<{ date: string }> }) {
     const { date } = use(params);
+    const [showResponse, setShowResponse] = useState(false);
     const letter = letterContent[date];
 
     if (!letter) {
@@ -119,7 +120,52 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                             💕💖💗💝❤️
                         </motion.div>
                     )}
+
+                    {!isValentineDay && date === "2026-02-08" && (
+                        <div className="flex justify-center mt-12">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => setShowResponse(true)}
+                                className="px-10 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all"
+                            >
+                                Yes I want to be yours! 💍
+                            </motion.button>
+                        </div>
+                    )}
                 </motion.div>
+
+                {/* Popup Response */}
+                <AnimatePresence>
+                    {showResponse && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50 px-4"
+                            onClick={() => setShowResponse(false)}
+                        >
+                            <motion.div
+                                initial={{ scale: 0.8, opacity: 0, y: 20 }}
+                                animate={{ scale: 1, opacity: 1, y: 0 }}
+                                exit={{ scale: 0.8, opacity: 0, y: 20 }}
+                                className="bg-white p-10 rounded-3xl shadow-2xl max-w-sm w-full text-center relative"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <div className="text-6xl mb-6">👩‍❤️‍👨</div>
+                                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-6">
+                                    You are mine pennee!!!!
+                                </h2>
+                                <button
+                                    onClick={() => setShowResponse(false)}
+                                    className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-full hover:scale-105 transition-transform"
+                                >
+                                    Forever! 💕
+                                </button>
+                            </motion.div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 {/* Signature */}
                 <motion.div
