@@ -21,7 +21,7 @@ const letterContent: Record<string, { title: string; emoji: string; message: str
         title: "Chocolate Day",
         emoji: "🍫",
         color: "from-amber-600 to-yellow-500",
-        message: "You're sweeter than any chocolate in the world. Your sweetness makes every day special! 🍫💖"
+        message: "Happy Chocolate Day to the one who melts my heart effortlessly.\n\nChocolate is sweet, but the comfort I feel with you is sweeter. It’s in your smile, your voice, your presence — everything about you makes life softer and happier.\n\nToday, as we share chocolates, I just want you to know that you are the sweetest blessing in my life, and I cherish every moment we create together.\n\nAlways loving you.\nAllen Thomas"
     },
     "2026-02-10": {
         title: "Teddy Day",
