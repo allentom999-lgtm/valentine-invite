@@ -154,7 +154,7 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                             >
                                 <div className="text-6xl mb-6">👩‍❤️‍👨</div>
                                 <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-6">
-                                    You are mine pennee!!!!
+                                    You are already mine hehe....
                                 </h2>
                                 <button
                                     onClick={() => setShowResponse(false)}
