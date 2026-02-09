@@ -27,7 +27,7 @@ const letterContent: Record<string, { title: string; emoji: string; message: str
         title: "Teddy Day",
         emoji: "🧸",
         color: "from-orange-400 to-red-400",
-        message: "I want to be your comfort, your warmth, and your cuddle buddy forever. You deserve all the hugs! 🧸🤗"
+        message: "My Princess,\n\nI’ve been thinking about today, and it honestly hurts knowing I made you feel bad. I’m really sorry for the way I spoke to you. You didn’t deserve that at all. I let my emotions get the better of me instead of choosing my words with care, and I regret it.\n\nYou’re so important to me, and you deserve nothing but kindness, respect, and love. The last thing I ever want is to be the reason you feel hurt or upset. I want to be the person who makes your days lighter, not heavier.\n\nIf anything I said made you feel unappreciated or doubted how much you mean to me, I’m truly sorry. That was never what I wanted. Sometimes I don’t express myself well, but my heart has always been on your side. I’ll try to be better — calmer, more patient, and more thoughtful with you.\n\nI really hope you can forgive me. I don’t like it when there's distance between us. I just want things to feel normal again, with us laughing and talking like we always do.\n\nBecause you’re my princess, and you deserve the best version of me — always."
     },
     "2026-02-11": {
         title: "Promise Day",
@@ -55,6 +55,98 @@ const letterContent: Record<string, { title: string; emoji: string; message: str
     },
 };
 
+const StitchTeddy = () => {
+    return (
+        <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="flex flex-col items-center justify-center mt-8 mb-4"
+        >
+            <div className="relative w-48 h-48 md:w-64 md:h-64">
+                {/* Stitch Body (Simplified SVG) */}
+                <svg viewBox="0 0 200 200" className="w-full h-full">
+                    {/* Ears */}
+                    <motion.path
+                        d="M40,60 Q10,20 60,40"
+                        fill="#4A90E2"
+                        animate={{ rotate: [0, -10, 0] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                    />
+                    <motion.path
+                        d="M160,60 Q190,20 140,40"
+                        fill="#4A90E2"
+                        animate={{ rotate: [0, 10, 0] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                    />
+
+                    {/* Head */}
+                    <circle cx="100" cy="80" r="50" fill="#4A90E2" />
+
+                    {/* Eyes */}
+                    <ellipse cx="80" cy="75" rx="12" ry="15" fill="white" />
+                    <ellipse cx="120" cy="75" rx="12" ry="15" fill="white" />
+                    <circle cx="82" cy="75" r="5" fill="black" />
+                    <circle cx="118" cy="75" r="5" fill="black" />
+
+                    {/* Nose */}
+                    <motion.path
+                        d="M90,95 Q100,105 110,95"
+                        fill="none"
+                        stroke="#2171C1"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                    />
+
+                    {/* Mouth/Smile */}
+                    <motion.path
+                        d="M85,110 Q100,125 115,110"
+                        fill="none"
+                        stroke="white"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        animate={{ d: ["M85,110 Q100,125 115,110", "M80,110 Q100,135 120,110", "M85,110 Q100,125 115,110"] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                    />
+
+                    {/* Left Arm (Waving) */}
+                    <motion.path
+                        d="M60,110 Q30,130 50,150"
+                        fill="none"
+                        stroke="#4A90E2"
+                        strokeWidth="15"
+                        strokeLinecap="round"
+                        animate={{ rotate: [0, -30, 0], originX: "60px", originY: "110px" }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+                    />
+
+                    {/* Right Arm (Waving) */}
+                    <motion.path
+                        d="M140,110 Q170,130 150,150"
+                        fill="none"
+                        stroke="#4A90E2"
+                        strokeWidth="15"
+                        strokeLinecap="round"
+                        animate={{ rotate: [0, 30, 0], originX: "140px", originY: "110px" }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                    />
+
+                    {/* Body */}
+                    <path d="M65,120 Q100,180 135,120" fill="#4A90E2" />
+                    <circle cx="100" cy="145" r="25" fill="#A5D8FF" opacity="0.5" />
+                </svg>
+            </div>
+            <motion.p
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="text-blue-600 font-bold text-xl mt-4"
+            >
+                Hi Princess! 🧸💙
+            </motion.p>
+        </motion.div>
+    );
+};
+
 export default function LetterPage({ params }: { params: Promise<{ date: string }> }) {
     const { date } = use(params);
     const [showResponse, setShowResponse] = useState(false);
@@ -74,6 +166,7 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
     }
 
     const isValentineDay = date === "2026-02-14";
+    const isTeddyDay = date === "2026-02-10";
 
     return (
         <div className={`min-h-screen bg-gradient-to-br ${letter.color} flex items-center justify-center px-4 py-16`}>
@@ -81,7 +174,7 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                 initial={{ scale: 0, rotate: -10 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ type: "spring", duration: 0.8 }}
-                className={`bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12 ${isValentineDay ? 'max-w-4xl' : 'max-w-2xl'
+                className={`bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12 ${isValentineDay ? 'max-w-4xl' : 'max-w-3xl'
                     } w-full`}
             >
                 {/* Envelope Opening Animation */}
@@ -99,6 +192,9 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     </h1>
                 </motion.div>
 
+                {/* Teddy Day Special Animation */}
+                {isTeddyDay && <StitchTeddy />}
+
                 {/* Letter Content */}
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -106,8 +202,16 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     transition={{ delay: 0.6 }}
                     className="space-y-6"
                 >
-                    <div className={`${isValentineDay ? 'text-2xl' : 'text-xl'} text-gray-700 leading-relaxed text-center font-serif italic`}>
-                        "{letter.message}"
+                    <div className={`${isValentineDay ? 'text-2xl' : 'text-lg'} text-gray-700 leading-relaxed text-center font-serif italic whitespace-pre-line`}>
+                        {isTeddyDay ? (
+                            <div className="text-left space-y-4 not-italic font-sans">
+                                {letter.message.split('\n\n').map((paragraph, i) => (
+                                    <p key={i}>{paragraph}</p>
+                                ))}
+                            </div>
+                        ) : (
+                            `"${letter.message}"`
+                        )}
                     </div>
 
                     {isValentineDay && (
@@ -175,10 +279,10 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     className="mt-12 text-right"
                 >
                     <p className={`${isValentineDay ? 'text-3xl' : 'text-2xl'} font-script text-rose-600`}>
-                        With all my love,
+                        {isTeddyDay ? "Always yours," : "With all my love,"}
                     </p>
                     <p className={`${isValentineDay ? 'text-4xl' : 'text-3xl'} font-script text-rose-700 mt-2`}>
-                        Your Valentine 💕
+                        {isTeddyDay ? "Allen ❤️" : "Your Valentine 💕"}
                     </p>
                 </motion.div>
 
