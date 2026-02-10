@@ -316,29 +316,35 @@ export default function LettersPage() {
             {/* Floating Hearts Background */}
             {mounted && (
                 <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-                    {[...Array(20)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{
-                                x: Math.random() * window.innerWidth,
-                                y: window.innerHeight + 100,
-                                opacity: 0,
-                            }}
-                            animate={{
-                                y: -100,
-                                opacity: [0, 0.4, 0.4, 0],
-                            }}
-                            transition={{
-                                duration: Math.random() * 5 + 10,
-                                delay: Math.random() * 5,
-                                repeat: Infinity,
-                                repeatDelay: Math.random() * 5,
-                            }}
-                            className="absolute text-3xl md:text-5xl"
-                        >
-                            {['💕', '💖', '💗', '💝', '❤️'][Math.floor(Math.random() * 5)]}
-                        </motion.div>
-                    ))}
+                    {[...Array(50)].map((_, i) => {
+                        const opacity = Math.random() * 0.4 + 0.1; // Varying transparency
+                        const size = Math.random() * 20 + 20; // Varying size
+                        return (
+                            <motion.div
+                                key={i}
+                                initial={{
+                                    x: Math.random() * window.innerWidth,
+                                    y: window.innerHeight + 100,
+                                    opacity: 0,
+                                    scale: Math.random() * 0.5 + 0.5
+                                }}
+                                animate={{
+                                    y: -100,
+                                    opacity: [0, opacity, opacity, 0],
+                                }}
+                                transition={{
+                                    duration: Math.random() * 10 + 15, // Slower movement
+                                    delay: Math.random() * 10,
+                                    repeat: Infinity,
+                                    repeatDelay: Math.random() * 5,
+                                }}
+                                className="absolute"
+                                style={{ fontSize: `${size}px` }}
+                            >
+                                {['💕', '💖', '💗', '💝', '❤️'][Math.floor(Math.random() * 5)]}
+                            </motion.div>
+                        );
+                    })}
                 </div>
             )}
 

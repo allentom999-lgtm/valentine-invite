@@ -96,9 +96,9 @@ export default function YesPage() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-8xl md:text-9xl font-bold drop-shadow-2xl"
+                    className="text-7xl md:text-9xl font-bold drop-shadow-2xl"
                 >
-                    Yeah! 🎉
+                    Hey, My Love.
                 </motion.h1>
 
                 <motion.div
