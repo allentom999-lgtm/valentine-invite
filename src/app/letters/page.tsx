@@ -94,18 +94,55 @@ export default function LettersPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-pink-100 via-rose-100 to-red-100 py-16 px-4">
-            <div className="max-w-6xl mx-auto">
+        <div className="min-h-screen bg-[#0a060e] flex flex-col items-center justify-center px-4 py-24 overflow-hidden font-poppins text-white">
+            {/* Animated breathing background - Magenta/Rose focus */}
+            <motion.div
+                animate={{
+                    background: [
+                        'radial-gradient(circle at 10% 20%, rgba(219, 39, 119, 0.3) 0%, rgba(162, 28, 175, 0.15) 35%, transparent 70%)',
+                        'radial-gradient(circle at 20% 10%, rgba(162, 28, 175, 0.3) 0%, rgba(219, 39, 119, 0.15) 35%, transparent 70%)',
+                        'radial-gradient(circle at 5% 30%, rgba(219, 39, 119, 0.3) 0%, rgba(162, 28, 175, 0.15) 35%, transparent 70%)',
+                        'radial-gradient(circle at 10% 20%, rgba(219, 39, 119, 0.3) 0%, rgba(162, 28, 175, 0.15) 35%, transparent 70%)',
+                    ],
+                }}
+                transition={{
+                    duration: 12,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+                className="absolute inset-0 opacity-100"
+            />
+
+            {/* Cyan Accent */}
+            <motion.div
+                animate={{
+                    background: [
+                        'radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.25) 0%, transparent 60%)',
+                        'radial-gradient(circle at 80% 90%, rgba(8, 145, 178, 0.2) 0%, transparent 60%)',
+                        'radial-gradient(circle at 95% 70%, rgba(6, 182, 212, 0.25) 0%, transparent 60%)',
+                        'radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.25) 0%, transparent 60%)',
+                    ],
+                }}
+                transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 2
+                }}
+                className="absolute inset-0 opacity-80"
+            />
+
+            <div className="max-w-6xl mx-auto relative z-10">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-16"
                 >
-                    <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-rose-600 mb-4">
+                    <h1 className="text-5xl md:text-7xl font-bold text-white drop-shadow-2xl mb-4">
                         Valentine's Week 💕
                     </h1>
-                    <p className="text-xl md:text-2xl text-rose-600 font-medium">
+                    <p className="text-xl md:text-2xl text-pink-200 font-medium italic">
                         A letter for each special day...
                     </p>
                 </motion.div>
@@ -253,23 +290,22 @@ export default function LettersPage() {
                     );
                 })()}
 
-                {/* Back Button */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1 }}
-                    className="text-center mt-16"
+                    className="text-center mt-20 space-y-6"
                 >
                     <Link
                         href="/yes"
-                        className="inline-block px-8 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-lg font-semibold rounded-full hover:from-pink-600 hover:to-rose-600 transition-all shadow-xl hover:scale-105"
+                        className="inline-block px-10 py-5 bg-white/10 backdrop-blur-xl border border-white/30 text-white text-xl font-bold rounded-2xl hover:bg-white/20 transition-all hover:scale-110 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                     >
                         ← Back to Celebration
                     </Link>
-                    <div className="mt-4">
+                    <div className="flex flex-col items-center">
                         <Link
                             href="/"
-                            className="inline-block px-8 py-4 border-2 border-rose-500 text-rose-600 text-lg font-semibold rounded-full hover:bg-rose-50 transition-all shadow-md hover:scale-105"
+                            className="inline-block px-8 py-4 bg-transparent border-2 border-white/20 text-white/80 text-lg font-semibold rounded-2xl hover:bg-white/5 transition-all hover:scale-105"
                         >
                             🏠 Return to Main Page
                         </Link>
@@ -280,7 +316,7 @@ export default function LettersPage() {
             {/* Floating Hearts Background */}
             {mounted && (
                 <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-                    {[...Array(15)].map((_, i) => (
+                    {[...Array(20)].map((_, i) => (
                         <motion.div
                             key={i}
                             initial={{
@@ -290,11 +326,11 @@ export default function LettersPage() {
                             }}
                             animate={{
                                 y: -100,
-                                opacity: [0, 0.3, 0.3, 0],
+                                opacity: [0, 0.4, 0.4, 0],
                             }}
                             transition={{
-                                duration: Math.random() * 5 + 8,
-                                delay: Math.random() * 3,
+                                duration: Math.random() * 5 + 10,
+                                delay: Math.random() * 5,
                                 repeat: Infinity,
                                 repeatDelay: Math.random() * 5,
                             }}

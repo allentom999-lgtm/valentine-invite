@@ -169,12 +169,48 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
     const isTeddyDay = date === "2026-02-10";
 
     return (
-        <div className={`min-h-screen bg-gradient-to-br ${letter.color} flex items-center justify-center px-4 py-16`}>
+        <div className="min-h-screen bg-[#0a060e] flex flex-col items-center justify-center px-4 py-16 overflow-hidden font-poppins text-white">
+            {/* Animated breathing background - Magenta/Rose focus */}
+            <motion.div
+                animate={{
+                    background: [
+                        'radial-gradient(circle at 10% 20%, rgba(219, 39, 119, 0.25) 0%, rgba(162, 28, 175, 0.1) 35%, transparent 70%)',
+                        'radial-gradient(circle at 20% 10%, rgba(162, 28, 175, 0.25) 0%, rgba(219, 39, 119, 0.1) 35%, transparent 70%)',
+                        'radial-gradient(circle at 5% 30%, rgba(219, 39, 119, 0.25) 0%, rgba(162, 28, 175, 0.1) 35%, transparent 70%)',
+                        'radial-gradient(circle at 10% 20%, rgba(219, 39, 119, 0.25) 0%, rgba(162, 28, 175, 0.1) 35%, transparent 70%)',
+                    ],
+                }}
+                transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+                className="absolute inset-0 opacity-100"
+            />
+
+            {/* Cyan Accent */}
+            <motion.div
+                animate={{
+                    background: [
+                        'radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.2) 0%, transparent 60%)',
+                        'radial-gradient(circle at 80% 90%, rgba(8, 145, 178, 0.15) 0%, transparent 60%)',
+                        'radial-gradient(circle at 95% 70%, rgba(6, 182, 212, 0.2) 0%, transparent 60%)',
+                        'radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.2) 0%, transparent 60%)',
+                    ],
+                }}
+                transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 2
+                }}
+                className="absolute inset-0 opacity-80"
+            />
             <motion.div
                 initial={{ scale: 0, rotate: -10 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ type: "spring", duration: 0.8 }}
-                className={`bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12 ${isValentineDay ? 'max-w-4xl' : 'max-w-3xl'
+                className={`bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-8 md:p-12 relative z-10 ${isValentineDay ? 'max-w-4xl' : 'max-w-3xl'
                     } w-full`}
             >
                 {/* Envelope Opening Animation */}
@@ -187,7 +223,7 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     <div className={`${isValentineDay ? 'text-9xl' : 'text-7xl'} mb-4`}>
                         {letter.emoji}
                     </div>
-                    <h1 className={`${isValentineDay ? 'text-6xl' : 'text-4xl'} font-bold text-transparent bg-clip-text bg-gradient-to-r ${letter.color} mb-4`}>
+                    <h1 className={`${isValentineDay ? 'text-6xl' : 'text-4xl'} font-bold text-white drop-shadow-lg mb-4`}>
                         {letter.title}
                     </h1>
                 </motion.div>
@@ -202,7 +238,7 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     transition={{ delay: 0.6 }}
                     className="space-y-6"
                 >
-                    <div className={`${isValentineDay ? 'text-2xl' : 'text-lg'} text-gray-700 leading-relaxed text-center font-serif italic whitespace-pre-line`}>
+                    <div className={`${isValentineDay ? 'text-2xl' : 'text-lg'} text-pink-50 leading-relaxed text-center font-medium italic whitespace-pre-line`}>
                         {isTeddyDay ? (
                             <div className="text-left space-y-4 not-italic font-sans">
                                 {letter.message.split('\n\n').map((paragraph, i) => (
@@ -231,7 +267,7 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setShowResponse(true)}
-                                className="px-10 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all"
+                                className="px-10 py-4 bg-white/10 backdrop-blur-xl border border-white/30 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110"
                             >
                                 Yes I want to be yours! 💍
                             </motion.button>
@@ -278,10 +314,10 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     transition={{ delay: 0.9 }}
                     className="mt-12 text-right"
                 >
-                    <p className={`${isValentineDay ? 'text-3xl' : 'text-2xl'} font-script text-rose-600`}>
+                    <p className={`${isValentineDay ? 'text-3xl' : 'text-2xl'} font-medium text-pink-200`}>
                         {isTeddyDay ? "Always yours," : "With all my love,"}
                     </p>
-                    <p className={`${isValentineDay ? 'text-4xl' : 'text-3xl'} font-script text-rose-700 mt-2`}>
+                    <p className={`${isValentineDay ? 'text-4xl' : 'text-3xl'} font-bold text-white mt-2 drop-shadow-md`}>
                         {isTeddyDay ? "Allen ❤️" : "Your Valentine 💕"}
                     </p>
                 </motion.div>
@@ -295,14 +331,14 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                 >
                     <Link
                         href="/letters"
-                        className="inline-block px-8 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-lg font-semibold rounded-full hover:from-pink-600 hover:to-rose-600 transition-all shadow-xl hover:scale-105"
+                        className="inline-block px-10 py-4 bg-white/10 backdrop-blur-xl border border-white/30 text-white text-lg font-bold rounded-2xl hover:bg-white/20 transition-all shadow-xl hover:scale-105"
                     >
                         ← Back to All Letters
                     </Link>
-                    <div className="mt-4">
+                    <div className="mt-6 flex flex-col items-center">
                         <Link
                             href="/"
-                            className="inline-block px-8 py-4 border-2 border-rose-500 text-rose-600 text-lg font-semibold rounded-full hover:bg-rose-50 transition-all shadow-md hover:scale-105"
+                            className="inline-block px-8 py-3 bg-transparent border-2 border-white/10 text-white/60 text-base font-semibold rounded-2xl hover:bg-white/5 transition-all"
                         >
                             🏠 Return to Main Page
                         </Link>
