@@ -94,7 +94,7 @@ export default function LettersPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#0a060e] flex flex-col items-center justify-center px-4 py-24 overflow-hidden font-poppins text-white">
+        <div className="relative min-h-screen bg-[#0a060e] flex flex-col items-center justify-start px-4 py-24 overflow-x-hidden font-poppins text-white">
             {/* Animated breathing background - Magenta/Rose focus */}
             <motion.div
                 animate={{
@@ -110,7 +110,7 @@ export default function LettersPage() {
                     repeat: Infinity,
                     ease: "easeInOut"
                 }}
-                className="absolute inset-0 opacity-100"
+                className="fixed inset-0 opacity-100"
             />
 
             {/* Cyan Accent */}
@@ -129,7 +129,7 @@ export default function LettersPage() {
                     ease: "easeInOut",
                     delay: 2
                 }}
-                className="absolute inset-0 opacity-80"
+                className="fixed inset-0 opacity-80"
             />
 
             <div className="max-w-6xl mx-auto relative z-10">
