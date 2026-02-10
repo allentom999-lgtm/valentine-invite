@@ -54,6 +54,8 @@ export default function LettersPage() {
             isCorrect = true;
         } else if (challengeDay === "Teddy Day" && normalizedAnswer === "allen") {
             isCorrect = true;
+        } else if (challengeDay === "Promise Day" && normalizedAnswer === "ammu") {
+            isCorrect = true;
         }
 
         if (isCorrect) {
@@ -94,7 +96,7 @@ export default function LettersPage() {
     };
 
     return (
-        <div className="relative min-h-screen bg-[#0a060e] flex flex-col items-center justify-start px-4 py-24 overflow-x-hidden font-poppins text-white">
+        <div className="relative min-h-screen bg-[#0a060e] flex flex-col items-center justify-start px-4 py-24 overflow-x-hidden font-poppins text-white cursor-heart">
             {/* Animated breathing background - Magenta/Rose focus */}
             <motion.div
                 animate={{
@@ -173,7 +175,7 @@ export default function LettersPage() {
                                     <div
                                         onClick={(e) => {
                                             if (!unlocked) return;
-                                            if (day.name === "Rose Day" || day.name === "Propose Day" || day.name === "Chocolate Day" || day.name === "Teddy Day") {
+                                            if (day.name === "Rose Day" || day.name === "Propose Day" || day.name === "Chocolate Day" || day.name === "Teddy Day" || day.name === "Promise Day") {
                                                 e.preventDefault();
                                                 setChallengeDay(day.name);
                                                 setShowQuestion(true);
@@ -182,7 +184,7 @@ export default function LettersPage() {
                                         }}
                                         className="block"
                                     >
-                                        <Link href={(unlocked && day.name !== "Rose Day" && day.name !== "Propose Day" && day.name !== "Chocolate Day" && day.name !== "Teddy Day") ? `/letter/${day.date}` : "#"}>
+                                        <Link href={(unlocked && day.name !== "Rose Day" && day.name !== "Propose Day" && day.name !== "Chocolate Day" && day.name !== "Teddy Day" && day.name !== "Promise Day") ? `/letter/${day.date}` : "#"}>
                                             <motion.div
                                                 whileHover={unlocked ? { scale: 1.05, rotate: 2 } : {}}
                                                 className={`relative bg-gradient-to-br ${day.color} p-8 rounded-3xl shadow-2xl min-h-[280px] flex flex-col items-center justify-center ${!unlocked && 'opacity-50 grayscale'
@@ -374,7 +376,7 @@ export default function LettersPage() {
 
                             <div className="text-center space-y-6">
                                 <div className="text-6xl">
-                                    {challengeDay === "Rose Day" ? "🌹" : challengeDay === "Propose Day" ? "💍" : challengeDay === "Chocolate Day" ? "🍫" : "🧸"}
+                                    {challengeDay === "Rose Day" ? "🌹" : challengeDay === "Propose Day" ? "💍" : challengeDay === "Chocolate Day" ? "🍫" : challengeDay === "Teddy Day" ? "🧸" : "🤝"}
                                 </div>
                                 <h2 className="text-3xl font-bold text-rose-600">{challengeDay} Challenge</h2>
                                 <p className="text-gray-600 text-lg">To unlock this letter, answer this question:</p>
@@ -387,7 +389,9 @@ export default function LettersPage() {
                                                 ? "Ammu's favourite fruit?"
                                                 : challengeDay === "Chocolate Day"
                                                     ? "What is Allen's favourite song?"
-                                                    : "The biggest dummy you have ever met?"}
+                                                    : challengeDay === "Teddy Day"
+                                                        ? "The biggest dummy you have ever met?"
+                                                        : "What is Allen's favourite Meals?"}
                                     </p>
                                     {challengeDay === "Rose Day" && (
                                         <p className="text-sm text-rose-400 mt-2">Format: DD/MM/YYYY</p>

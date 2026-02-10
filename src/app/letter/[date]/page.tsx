@@ -33,7 +33,7 @@ const letterContent: Record<string, { title: string; emoji: string; message: str
         title: "Promise Day",
         emoji: "🤝",
         color: "from-blue-400 to-purple-400",
-        message: "I promise to always make you smile, to support you, and to love you with all my heart. Forever and always! 🤝💕"
+        message: "My Love,\n\nOn this Promise Day, I want to promise you the little things that truly matter to us.\n\nI promise to be patient when days get hard, to hold your hand when you feel unsure, and to always remind you how amazing you are. I promise to laugh with you in happy moments and stand strong beside you when life tests us.\n\nI promise to never stop choosing you, respecting you, and loving you in ways that make you feel safe and valued. No matter where life takes us, my heart will always find its way back to you.\n\nAnd above all, I promise that my intentions with you are pure to grow together, support each other, and build a love that feels like home.\n\nAlways yours,\nAllen"
     },
     "2026-02-12": {
         title: "Hug Day",
