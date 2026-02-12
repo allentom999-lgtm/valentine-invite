@@ -155,7 +155,7 @@ export default function LettersPage() {
                 </motion.div>
 
                 {/* Envelopes Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {valentineDays.slice(0, 7).map((day, index) => {
                         const unlocked = isUnlocked(day.date);
                         const timeRemaining = getTimeRemaining(day.date);
@@ -170,8 +170,8 @@ export default function LettersPage() {
                             >
                                 <div className={`relative group ${unlocked ? 'cursor-pointer' : 'cursor-not-allowed'}`}>
                                     {/* Timer */}
-                                    <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-[#f4ecd8] border border-[#8d6e63]/20 px-4 py-2 rounded-sm shadow-md z-10">
-                                        <p className={`text-xs font-mono font-bold ${unlocked ? 'text-green-700' : 'text-rose-700'}`}>
+                                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg z-10">
+                                        <p className={`text-sm font-mono font-bold ${unlocked ? 'text-green-600' : 'text-rose-600'}`}>
                                             {timeRemaining}
                                         </p>
                                     </div>
@@ -191,27 +191,27 @@ export default function LettersPage() {
                                     >
                                         <Link href={(unlocked && day.name !== "Rose Day" && day.name !== "Propose Day" && day.name !== "Chocolate Day" && day.name !== "Teddy Day" && day.name !== "Promise Day" && day.name !== "Hug Day" && day.name !== "Kiss Day") ? `/letter/${day.date}` : "#"}>
                                             <motion.div
-                                                whileHover={unlocked ? { scale: 1.05, rotate: 1 } : {}}
-                                                className={`relative old-paper-texture p-8 rounded-sm shadow-xl min-h-[300px] flex flex-col items-center justify-center border-l-[10px] border-l-[#e6d0a3] ${!unlocked && 'opacity-60 grayscale scale-95'
+                                                whileHover={unlocked ? { scale: 1.05, rotate: 2 } : {}}
+                                                className={`relative bg-gradient-to-br ${day.color} p-8 rounded-3xl shadow-2xl min-h-[280px] flex flex-col items-center justify-center ${!unlocked && 'opacity-50 grayscale border-none'
                                                     }`}
                                             >
                                                 {/* Lock Icon */}
                                                 {!unlocked && (
-                                                    <div className="absolute top-4 right-4 text-3xl opacity-40">
+                                                    <div className="absolute top-4 right-4 text-4xl">
                                                         🔒
                                                     </div>
                                                 )}
 
                                                 {/* Envelope Icon */}
-                                                <div className="text-7xl mb-6 filter drop-shadow-sm grayscale-[0.2]">
+                                                <div className="text-7xl mb-4">
                                                     {unlocked ? '💌' : '✉️'}
                                                 </div>
 
                                                 {/* Day Info */}
-                                                <h3 className="text-3xl font-handwritten font-bold text-[#5d4037] text-center mb-2">
+                                                <h3 className="text-2xl font-bold text-white text-center mb-2">
                                                     {day.name}
                                                 </h3>
-                                                <p className="text-2xl opacity-80">
+                                                <p className="text-xl">
                                                     {day.emoji}
                                                 </p>
 
@@ -219,7 +219,7 @@ export default function LettersPage() {
                                                     <motion.p
                                                         initial={{ opacity: 0 }}
                                                         animate={{ opacity: 1 }}
-                                                        className="mt-6 text-[#8d6e63] font-handwritten font-bold text-lg"
+                                                        className="mt-4 text-white/90 font-medium"
                                                     >
                                                         Click to open
                                                     </motion.p>
@@ -303,18 +303,18 @@ export default function LettersPage() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1 }}
-                    className="text-center mt-24 space-y-8"
+                    className="text-center mt-20 space-y-6"
                 >
                     <Link
                         href="/yes"
-                        className="inline-block px-12 py-5 bg-white/5 backdrop-blur-xl border border-white/20 text-white text-2xl font-handwritten font-bold rounded-2xl hover:bg-white/10 transition-all hover:scale-110 shadow-xl"
+                        className="inline-block px-10 py-5 bg-white/10 backdrop-blur-xl border border-white/30 text-white text-xl font-bold rounded-2xl hover:bg-white/20 transition-all hover:scale-110 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                     >
                         ← Back to Celebration
                     </Link>
                     <div className="flex flex-col items-center">
                         <Link
                             href="/"
-                            className="inline-block text-white/50 text-xl font-handwritten font-semibold hover:text-white transition-all underline underline-offset-8"
+                            className="inline-block px-8 py-4 bg-transparent border-2 border-white/20 text-white/80 text-lg font-semibold rounded-2xl hover:bg-white/5 transition-all hover:scale-105"
                         >
                             🏠 Return to Main Page
                         </Link>
@@ -325,9 +325,9 @@ export default function LettersPage() {
             {/* Floating Hearts Background */}
             {mounted && (
                 <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-                    {[...Array(40)].map((_, i) => {
-                        const opacity = Math.random() * 0.3 + 0.1;
-                        const size = Math.random() * 20 + 20;
+                    {[...Array(50)].map((_, i) => {
+                        const opacity = Math.random() * 0.4 + 0.1; // Varying transparency
+                        const size = Math.random() * 20 + 20; // Varying size
                         return (
                             <motion.div
                                 key={i}
@@ -342,12 +342,12 @@ export default function LettersPage() {
                                     opacity: [0, opacity, opacity, 0],
                                 }}
                                 transition={{
-                                    duration: Math.random() * 12 + 18,
+                                    duration: Math.random() * 10 + 15, // Slower movement
                                     delay: Math.random() * 10,
                                     repeat: Infinity,
                                     repeatDelay: Math.random() * 5,
                                 }}
-                                className="absolute filter sepia-[0.4] grayscale-[0.2]"
+                                className="absolute"
                                 style={{ fontSize: `${size}px` }}
                             >
                                 {['💕', '💖', '💗', '💝', '❤️'][Math.floor(Math.random() * 5)]}
@@ -364,35 +364,34 @@ export default function LettersPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 px-4"
+                        className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50 px-4"
                         onClick={() => setShowQuestion(false)}
                     >
                         <motion.div
                             initial={{ scale: 0.9, opacity: 0, y: 20 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                            className="old-paper-texture p-8 md:p-14 rounded-sm shadow-2xl max-w-lg w-full relative border border-[#d7ccc8]"
+                            className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl max-w-md w-full relative"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <button
                                 onClick={() => setShowQuestion(false)}
-                                className="absolute top-6 right-6 text-[#5d4037]/40 hover:text-[#5d4037] transition-colors text-2xl"
+                                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
                             >
                                 ✕
                             </button>
 
-                            <div className="text-center space-y-8">
-                                <div className="text-7xl filter drop-shadow-sm">
+                            <div className="text-center space-y-6">
+                                <div className="text-6xl">
                                     {challengeDay === "Rose Day" ? "🌹" : challengeDay === "Propose Day" ? "💍" : challengeDay === "Chocolate Day" ? "🍫" : challengeDay === "Teddy Day" ? "🧸" : challengeDay === "Promise Day" ? "🤝" : challengeDay === "Hug Day" ? "🤗" : "💋"}
                                 </div>
-                                <h2 className="text-5xl font-handwritten font-bold text-[#5d4037]">{challengeDay} Challenge</h2>
-                                <p className="text-[#8d6e63] font-handwritten text-2xl">To unlock this letter, answer this question:</p>
+                                <h2 className="text-3xl font-bold text-rose-600">{challengeDay} Challenge</h2>
+                                <p className="text-gray-600 text-lg">To unlock this letter, answer this question:</p>
 
-                                <div className="bg-[#5d4037]/5 p-8 rounded-sm border border-[#5d4037]/10 relative">
-                                    <div className="absolute top-0 left-2 text-4xl text-[#5d4037]/10 font-serif">“</div>
-                                    <p className="text-3xl font-handwritten font-bold text-[#3e2723] italic">
+                                <div className="bg-rose-50 p-6 rounded-2xl border-2 border-rose-100">
+                                    <p className="text-xl font-medium text-rose-800 italic">
                                         {challengeDay === "Rose Day"
-                                            ? "When is our first date?"
+                                            ? "\"When is our first date?\""
                                             : challengeDay === "Propose Day"
                                                 ? "Ammu's favourite fruit?"
                                                 : challengeDay === "Chocolate Day"
@@ -405,36 +404,35 @@ export default function LettersPage() {
                                                                 ? "Name the person that melts Allen away instantly?"
                                                                 : "what is the first song that made us madly fall in love?"}
                                     </p>
-                                    <div className="absolute bottom-0 right-2 text-4xl text-[#5d4037]/10 font-serif">”</div>
                                     {challengeDay === "Rose Day" && (
-                                        <p className="text-sm font-mono text-[#8d6e63] mt-4 opacity-60">Format: DD/MM/YYYY</p>
+                                        <p className="text-sm text-rose-400 mt-2">Format: DD/MM/YYYY</p>
                                     )}
                                 </div>
 
-                                <form onSubmit={handleAnswerSubmit} className="space-y-6">
+                                <form onSubmit={handleAnswerSubmit} className="space-y-4">
                                     <input
                                         autoFocus
                                         type="text"
                                         value={answer}
                                         onChange={(e) => setAnswer(e.target.value)}
-                                        placeholder="Write your answer here..."
-                                        className={`w-full px-8 py-5 rounded-sm border-b-2 bg-transparent focus:outline-none transition-all text-center text-3xl font-handwritten text-[#3e2723] placeholder:text-[#8d6e63]/40 ${error
-                                            ? 'border-red-500 animate-shake'
-                                            : 'border-[#5d4037]/20 focus:border-[#5d4037]'
+                                        placeholder="Enter answer here..."
+                                        className={`w-full px-6 py-4 rounded-xl border-2 focus:outline-none transition-all text-center text-xl ${error
+                                            ? 'border-red-400 bg-red-50 animate-shake'
+                                            : 'border-rose-100 focus:border-rose-400 bg-white text-gray-800'
                                             }`}
                                     />
                                     {error && (
                                         <motion.p
                                             initial={{ opacity: 0, y: -10 }}
                                             animate={{ opacity: 1, y: 0 }}
-                                            className="text-red-600 font-handwritten font-bold text-xl"
+                                            className="text-red-500 font-medium"
                                         >
-                                            Not quite right, try again! 💕
+                                            Incorrect answer, try again! 💕
                                         </motion.p>
                                     )}
                                     <button
                                         type="submit"
-                                        className="w-full py-5 bg-[#5d4037] text-[#f4ecd8] text-2xl font-handwritten font-bold rounded-sm shadow-lg hover:bg-[#4e342e] transition-all hover:scale-[1.02] mt-4"
+                                        className="w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xl font-bold rounded-xl hover:from-pink-600 hover:to-rose-600 transition-all shadow-lg hover:scale-[1.02]"
                                     >
                                         Unlock Letter ✨
                                     </button>
