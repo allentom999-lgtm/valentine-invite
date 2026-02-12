@@ -39,7 +39,7 @@ const letterContent: Record<string, { title: string; emoji: string; message: str
         title: "Hug Day",
         emoji: "🤗",
         color: "from-green-400 to-teal-400",
-        message: "Your hugs are my favorite place in the world. They make everything better. Sending you the biggest virtual hug! 🤗💖"
+        message: "My Princess,\n\nHappy Hug Day to the one whose hugs instantly make everything better. I don't know how, the moment you wrap your arms around me, all the stress disappears and the world feels lighter.\nI guess it the power of the ACF.\nI love how we can go from being silly or moody to just laughing and hugging like nothing else matters. And in those moments, I quietly realize how lucky I am to have found someone who feels so much like home.\n\nYour hugs are my favorite place warm, safe, and a little addictive. So today, I’m officially claiming extra-long hugs from you, no excuses allowed.\n\nSaving my tightest hug for you.\n\nForever your favorite hug partner,\nAllen ❤️"
     },
     "2026-02-13": {
         title: "Kiss Day",
@@ -167,6 +167,7 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
 
     const isValentineDay = date === "2026-02-14";
     const isTeddyDay = date === "2026-02-10";
+    const isHugDay = date === "2026-02-12";
 
     return (
         <div className="min-h-screen bg-[#0a060e] flex flex-col items-center justify-center px-4 py-16 overflow-hidden font-poppins text-white">
@@ -239,7 +240,7 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     className="space-y-6"
                 >
                     <div className={`${isValentineDay ? 'text-2xl' : 'text-lg'} text-pink-50 leading-relaxed text-center font-medium italic whitespace-pre-line`}>
-                        {isTeddyDay ? (
+                        {isTeddyDay || isHugDay ? (
                             <div className="text-left space-y-4 not-italic font-sans">
                                 {letter.message.split('\n\n').map((paragraph, i) => (
                                     <p key={i}>{paragraph}</p>
