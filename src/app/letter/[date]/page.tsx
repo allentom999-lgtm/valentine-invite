@@ -45,7 +45,7 @@ const letterContent: Record<string, { title: string; emoji: string; message: str
         title: "Kiss Day",
         emoji: "💋",
         color: "from-pink-500 to-rose-500",
-        message: "Every kiss with you feels like magic. You make my heart race and my soul sing! 💋✨"
+        message: "My Love,\n\nHappy Kiss Day!\n\nI just want you to know how special your kisses are to me. They make my day lighter, calm my mind, and remind me how lucky I am to have you. Even a small kiss from you can turn a bad day into a good one.\n\nAnd I also want to say sorry if recently I haven’t really been myself. Things have been a bit messy in my head, but through all of it, you’ve been my comfort. Your love and your hugs and kisses make everything feel okay again.\n\nI love all our little moments the shy kisses, the playful ones, and the ones that just happen without any reason. I hope we keep sharing these sweet moments forever.\n\nSending you all my love and a million kisses today and always.\n\nYours Always\nAllen"
     },
     "2026-02-14": {
         title: "Valentine's Day",
@@ -208,25 +208,31 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                 className="absolute inset-0 opacity-80"
             />
             <motion.div
-                initial={{ scale: 0, rotate: -10 }}
+                initial={{ scale: 0, rotate: -2 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ type: "spring", duration: 0.8 }}
-                className={`bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-8 md:p-12 relative z-10 ${isValentineDay ? 'max-w-4xl' : 'max-w-3xl'
-                    } w-full`}
+                className={`old-paper-texture rounded-sm relative z-10 ${isValentineDay ? 'max-w-4xl' : 'max-w-3xl'
+                    } w-full p-8 md:p-16 border-l-[15px] border-l-[#e6d0a3] overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] before:opacity-20 before:pointer-events-none`}
             >
+                {/* Coffee Stain 1 */}
+                <div className="absolute top-[-20px] left-[-20px] w-40 h-40 bg-[radial-gradient(circle,rgba(111,78,55,0.15)_0%,transparent_70%)] rounded-full blur-xl pointer-events-none" />
+                {/* Coffee Stain 2 */}
+                <div className="absolute bottom-10 right-[-30px] w-64 h-64 bg-[radial-gradient(circle,rgba(111,78,55,0.1)_0%,transparent_70%)] rounded-full blur-2xl pointer-events-none" />
+
                 {/* Envelope Opening Animation */}
                 <motion.div
                     initial={{ y: -20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="text-center mb-8"
+                    className="text-center mb-12"
                 >
-                    <div className={`${isValentineDay ? 'text-9xl' : 'text-7xl'} mb-4`}>
+                    <div className={`${isValentineDay ? 'text-9xl' : 'text-7xl'} mb-4 drop-shadow-sm`}>
                         {letter.emoji}
                     </div>
-                    <h1 className={`${isValentineDay ? 'text-6xl' : 'text-4xl'} font-bold text-white drop-shadow-lg mb-4`}>
+                    <h1 className={`${isValentineDay ? 'text-7xl' : 'text-5xl'} font-handwritten font-bold text-[#5d4037] drop-shadow-sm mb-4`}>
                         {letter.title}
                     </h1>
+                    <div className="w-32 h-1 bg-[#8d6e63]/30 mx-auto rounded-full" />
                 </motion.div>
 
                 {/* Teddy Day Special Animation */}
@@ -237,17 +243,21 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.6 }}
-                    className="space-y-6"
+                    className="space-y-8"
                 >
-                    <div className={`${isValentineDay ? 'text-2xl' : 'text-lg'} text-pink-50 leading-relaxed text-center font-medium italic whitespace-pre-line`}>
+                    <div className={`${isValentineDay ? 'text-3xl' : 'text-2xl'} text-[#3e2723] leading-relaxed text-center font-handwritten whitespace-pre-line`}>
                         {isTeddyDay || isHugDay ? (
-                            <div className="text-left space-y-4 not-italic font-sans">
+                            <div className="text-left space-y-6 font-casual text-2xl md:text-3xl">
                                 {letter.message.split('\n\n').map((paragraph, i) => (
-                                    <p key={i}>{paragraph}</p>
+                                    <p key={i} className="first-letter:text-4xl first-letter:font-bold first-letter:text-[#5d4037]">{paragraph}</p>
                                 ))}
                             </div>
                         ) : (
-                            `"${letter.message}"`
+                            <span className="relative">
+                                <span className="absolute -top-4 -left-6 text-6xl text-[#8d6e63]/20 font-serif">"</span>
+                                {letter.message}
+                                <span className="absolute -bottom-10 -right-6 text-6xl text-[#8d6e63]/20 font-serif">"</span>
+                            </span>
                         )}
                     </div>
 
@@ -256,7 +266,7 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ delay: 1, type: "spring" }}
-                            className="text-center text-6xl mt-8"
+                            className="text-center text-6xl mt-8 filter sepia-[0.3]"
                         >
                             💕💖💗💝❤️
                         </motion.div>
@@ -268,7 +278,7 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setShowResponse(true)}
-                                className="px-10 py-4 bg-white/10 backdrop-blur-xl border border-white/30 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110"
+                                className="px-10 py-4 bg-[#5d4037] text-[#f4ecd8] font-handwritten text-xl font-bold rounded-sm shadow-md hover:bg-[#4e342e] transition-all"
                             >
                                 Yes I want to be yours! 💍
                             </motion.button>
@@ -283,23 +293,23 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50 px-4"
+                            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 px-4"
                             onClick={() => setShowResponse(false)}
                         >
                             <motion.div
                                 initial={{ scale: 0.8, opacity: 0, y: 20 }}
                                 animate={{ scale: 1, opacity: 1, y: 0 }}
                                 exit={{ scale: 0.8, opacity: 0, y: 20 }}
-                                className="bg-white p-10 rounded-3xl shadow-2xl max-w-sm w-full text-center relative"
+                                className="old-paper-texture p-10 rounded-sm shadow-2xl max-w-sm w-full text-center relative border border-[#d7ccc8]"
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 <div className="text-6xl mb-6">👩‍❤️‍👨</div>
-                                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-6">
+                                <h2 className="text-4xl font-handwritten font-bold text-[#5d4037] mb-6">
                                     You are already mine hehe....
                                 </h2>
                                 <button
                                     onClick={() => setShowResponse(false)}
-                                    className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-full hover:scale-105 transition-transform"
+                                    className="px-8 py-3 bg-[#5d4037] text-[#f4ecd8] font-handwritten text-lg font-bold rounded-sm hover:scale-105 transition-transform"
                                 >
                                     Forever! 💕
                                 </button>
@@ -313,12 +323,12 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.9 }}
-                    className="mt-12 text-right"
+                    className="mt-16 text-right border-t border-[#8d6e63]/20 pt-8"
                 >
-                    <p className={`${isValentineDay ? 'text-3xl' : 'text-2xl'} font-medium text-pink-200`}>
+                    <p className={`${isValentineDay ? 'text-4xl' : 'text-3xl'} font-handwritten text-[#8d6e63]`}>
                         {isTeddyDay ? "Always yours," : "With all my love,"}
                     </p>
-                    <p className={`${isValentineDay ? 'text-4xl' : 'text-3xl'} font-bold text-white mt-2 drop-shadow-md`}>
+                    <p className={`${isValentineDay ? 'text-5xl' : 'text-4xl'} font-handwritten font-bold text-[#5d4037] mt-2`}>
                         {isTeddyDay ? "Allen ❤️" : "Your Valentine 💕"}
                     </p>
                 </motion.div>
@@ -328,18 +338,18 @@ export default function LetterPage({ params }: { params: Promise<{ date: string 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.2 }}
-                    className="text-center mt-12"
+                    className="text-center mt-16"
                 >
                     <Link
                         href="/letters"
-                        className="inline-block px-10 py-4 bg-white/10 backdrop-blur-xl border border-white/30 text-white text-lg font-bold rounded-2xl hover:bg-white/20 transition-all shadow-xl hover:scale-105"
+                        className="inline-block px-10 py-3 border-2 border-[#5d4037]/30 text-[#5d4037] text-lg font-handwritten font-bold rounded-sm hover:bg-[#5d4037]/5 transition-all shadow-sm hover:scale-105"
                     >
                         ← Back to All Letters
                     </Link>
                     <div className="mt-6 flex flex-col items-center">
                         <Link
                             href="/"
-                            className="inline-block px-8 py-3 bg-transparent border-2 border-white/10 text-white/60 text-base font-semibold rounded-2xl hover:bg-white/5 transition-all"
+                            className="inline-block text-[#5d4037]/60 text-base font-handwritten font-semibold hover:text-[#5d4037] transition-all underline underline-offset-4"
                         >
                             🏠 Return to Main Page
                         </Link>
